@@ -1,13 +1,13 @@
-package view.types;
+package model;
 
-public enum InfoType {
+public enum Colors {
     SUCCESS("\033[92m"),  // verde
     ERROR("\033[91m"),    // vermelho
     WARNING("\033[93m");  // amarelo
 
     private final String color;
 
-    InfoType(String color) {
+    Colors(String color) {
         this.color = color;
     }
 

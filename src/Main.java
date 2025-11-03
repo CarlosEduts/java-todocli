@@ -1,8 +1,18 @@
+import model.Task;
 import view.Menu;
+
+import java.time.LocalDate;
+import java.time.LocalTime;
+import java.util.List;
 
 public class Main {
     public static void main(String[] args) {
-        char home = Menu.home();
-        System.out.println(home);
+        List<Task> tasks = List.of(
+                new Task( "Ir ao mercado", "Comprar arroz e feijão", LocalDate.now(), LocalTime.now()),
+                new Task( "Estudar Java", "Ler capítulos 3 e 4 do livro", LocalDate.now(), LocalTime.now()),
+                new Task( "Fazer exercícios", "Resolver lista de exercícios de matemática", LocalDate.now(), LocalTime.now())
+        );
+
+        Menu.taskDetails(new Task( "Fazer exercícios", "Resolver lista de exercícios de matemática", LocalDate.now(), LocalTime.now()));
     }
 }

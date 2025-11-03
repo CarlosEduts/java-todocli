@@ -1,28 +1,66 @@
 package view;
 
-import view.types.InfoType;
+import model.HomeOption;
+import model.Task;
+import model.Colors;
+import model.TaskOption;
 
+import java.util.List;
+import java.util.Optional;
 import java.util.Scanner;
-import java.util.Set;
 
 public class Menu {
     private static final Scanner scanner = new Scanner(System.in);
-    private static final Set<Character> HOME_OPTIONS = Set.of('L', 'M', 'P', 'C', 'D', 'O', 'F', 'S', 'Q');
 
-    public static char home() {
-        char selected;
+    public static HomeOption home() {
         while (true) {
-            PrintComponent.home();
+            Components.home();
             System.out.print("\nAção selecionada >> ");
-            selected = scanner.next().toUpperCase().charAt(0);
+            char selected = scanner.next().toUpperCase().charAt(0);
 
-            if (HOME_OPTIONS.contains(selected)) {
-                break;
+            Optional<HomeOption> option = HomeOption.fromChar(selected);
+            if (option.isPresent()) {
+                return option.get();
             }
 
-            PrintComponent.info(InfoType.ERROR, "Ação indisponível, selecione outra no menu");
+            Components.info(Colors.ERROR, "Ação indisponível, selecione uma ação válida");
+        }
+    }
+
+    public Task listTasks(List<Task> tasks) {
+        Task selectedTask = null;
+        int selectedId;
+
+        while (true) {
+            Components.tasks(tasks);
+            System.out.print("\nID selecionado >> ");
+            selectedId = scanner.nextInt();
+            scanner.nextLine();
+
+            for (Task task : tasks) {
+                if (task.getId() == selectedId) {
+                    selectedTask = task;
+                    return selectedTask;
+                }
+            }
+
+            Components.info(Colors.ERROR, "ID indisponível, selecione um ID válido");
         }
 
-        return selected;
+    }
+
+    public static TaskOption taskDetails(Task task) {
+        while (true) {
+            Components.task(task);
+            System.out.print("\nAção selecionada >> ");
+            char selected = scanner.next().toUpperCase().charAt(0);
+
+            Optional<TaskOption> option = TaskOption.fromChar(selected);
+            if (option.isPresent()) {
+                return option.get();
+            }
+
+            Components.info(Colors.ERROR, "Ação indisponível, selecione uma ação válida");
+        }
     }
 }
