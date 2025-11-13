@@ -7,7 +7,7 @@ import model.Colors;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
 
-class Components {
+public class Components {
     private static final DateTimeFormatter DATE_FORMAT = DateTimeFormatter.ofPattern("dd/MM/yyyy");
     private static final DateTimeFormatter TIME_FORMAT = DateTimeFormatter.ofPattern("HH:mm");
 
@@ -79,6 +79,23 @@ class Components {
         System.out.println("╠══════════════════════════════════════════════════════════════════════════════════════════════╣");
         System.out.println("║                   [E] Editar  [M] Marcar como concluída  [D] Excluir  [B] Voltar             ║");
         System.out.println("╚══════════════════════════════════════════════════════════════════════════════════════════════╝");
+    }
+
+    public static void exclude(Task task) {
+        System.out.printf("""
+                        ╔════════════════════════════════╗
+                        ║      CONFIRMAR EXCLUSÃO        ║
+                        ╠════════════════════════════════╣
+                        ║ Tem certeza que deseja excluir ║
+                        ║ a tarefa ID %03d?               ║
+                        ║ - %s ║
+                        ║                                ║
+                        ║ [Y] Sim    [N] Não             ║
+                        ╚════════════════════════════════╝
+                        """,
+                task.getId(),
+                truncateOrPad(task.getTitle(), 28)
+        );
     }
 
     // Métodos auxiliares privados

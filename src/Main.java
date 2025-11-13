@@ -1,5 +1,6 @@
 import model.Task;
 import view.Menu;
+import view.Components;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
@@ -13,6 +14,8 @@ public class Main {
                 new Task( "Fazer exercícios", "Resolver lista de exercícios de matemática", LocalDate.now(), LocalTime.now())
         );
 
-        Menu.taskDetails(new Task( "Fazer exercícios", "Resolver lista de exercícios de matemática", LocalDate.now(), LocalTime.now()));
+        // Menu.taskDetails(new Task( "Fazer exercícios", "Resolver lista de exercícios de matemática", LocalDate.now(), LocalTime.now()));
+
+        Components.exclude(new Task( "Fazer exercícios", "Resolver lista de exercícios de matemática", LocalDate.now(), LocalTime.now()));
     }
 }
