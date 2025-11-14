@@ -6,6 +6,7 @@
     <version>1.0-SNAPSHOT</version>
     <name>todocli</name>
     <url>http://maven.apache.org</url>
+
     <dependencies>
         <dependency>
             <groupId>com.mysql</groupId>
@@ -13,6 +14,7 @@
             <version>9.5.0</version>
         </dependency>
     </dependencies>
+
     <build>
         <plugins>
             <plugin>
