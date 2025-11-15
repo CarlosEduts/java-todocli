@@ -39,4 +39,17 @@ public class TaskRepository {
             throw new RuntimeException(e);
         }
     }
+
+    public static void markAsComplete(int id) {
+        String sql = "UPDATE tasks SET completed = 1 WHERE (id = ?);";
+
+        try (Connection conn = ConnectionFactory.getConnection();
+             PreparedStatement stmt = conn.prepareStatement(sql)
+        ) {
+            stmt.setInt(1, id);
+            stmt.executeUpdate();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
 }
