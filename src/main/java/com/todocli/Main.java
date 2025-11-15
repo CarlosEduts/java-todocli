@@ -21,6 +21,16 @@ public class Main {
                 false,
                 false
         );
-        System.out.println(TaskRepository.create(task01));
+
+        Task task02 = new Task(
+                0,
+                LocalDate.of(2024, 6, 16),
+                LocalTime.of(10, 0),
+                "Team Meeting",
+                "Attend the weekly team meeting to discuss project updates.",
+                false,
+                false
+        );
+        TaskRepository.delete(3);
     }
 }
