@@ -1,4 +1,30 @@
 package com.todocli.repository;
 
+import com.todocli.config.ConnectionFactory;
+import com.todocli.model.Task;
+
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
+import java.time.format.DateTimeFormatter;
+
 public class TaskRepository {
+    public static Task create(Task task) {
+        String sql = "INSERT INTO tasks (date, time, title, description, completed, deleted) VALUES (?, ?, ?, ?, ?, ?);";
+
+        try (Connection conn = ConnectionFactory.getConnection()) {
+            PreparedStatement stmt = conn.prepareStatement(sql);
+            stmt.setString(1, task.getDate().format(DateTimeFormatter.ofPattern("yyyy-MM-dd")));
+            stmt.setString(2, task.getTime().format(DateTimeFormatter.ofPattern("HH:mm:ss")));
+            stmt.setString(3, task.getTitle());
+            stmt.setString(4, task.getDescription());
+            stmt.setBoolean(5, false);
+            stmt.setBoolean(6, false);
+            stmt.executeUpdate();
+        } catch (SQLException e) {
+            throw new RuntimeException("[model] " + e);
+        }
+
+        return task;
+    }
 }
