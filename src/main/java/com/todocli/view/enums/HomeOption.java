@@ -8,7 +8,8 @@ public enum HomeOption {
     CREATE('C'),
     FILTER('F'),
     SEARCH('S'),
-    QUIT('Q');
+    QUIT('Q'),
+    DELETED_LIST('D');
 
     private final char code;
 

@@ -27,7 +27,7 @@ public class Menu {
         }
     }
 
-    public Task listTasks(List<Task> tasks) {
+    public static Task listTasks(List<Task> tasks) {
         Task selectedTask = null;
         int selectedId;
 
@@ -62,5 +62,21 @@ public class Menu {
 
             Components.info(Colors.ERROR, "Ação indisponível, selecione uma ação válida");
         }
+    }
+
+    public static boolean confirmTaskDelete(Task task) {
+        Components.exclude(task);
+
+        System.out.print("\nAção selecionada >> ");
+        char selected = scanner.next().toUpperCase().charAt(0);
+        return selected == 'Y';
+    }
+
+    public static boolean confirmTaskComplete(Task task) {
+        Components.confirmCompleted(task);
+
+        System.out.print("\nAção selecionada >> ");
+        char selected = scanner.next().toUpperCase().charAt(0);
+        return selected == 'Y';
     }
 }

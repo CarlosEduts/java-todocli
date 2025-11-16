@@ -35,7 +35,7 @@ public class Components {
                 ║                         JAVA TODO CLI - MENU                        ║
                 ╠═════════════════════════════════════════════════════════════════════╣
                 ║ [L] Listar tarefas       [C] Criar tarefa       [F] Filtrar         ║
-                ║ [S] Buscar tarefa        [Q] Sair                                   ║
+                ║ [S] Buscar tarefa        [D] Tarefas Excluídas  [Q] Sair            ║
                 ╠═════════════════════════════════════════════════════════════════════╣
                 ║ Atalho: Pressione a tecla entre colchetes e ENTER.                  ║
                 ╚═════════════════════════════════════════════════════════════════════╝

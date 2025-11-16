@@ -1,16 +1,14 @@
 package com.todocli;
 
-import com.todocli.config.ConnectionFactory;
 import com.todocli.model.Task;
 import com.todocli.repository.TaskRepository;
-import com.todocli.util.TaskTableCreator;
+import com.todocli.service.TaskService;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
 
 public class Main {
     public static void main(String[] args) {
-        TaskTableCreator.create(ConnectionFactory.getConnection());
 
         Task task01 = new Task(
                 0,
@@ -31,10 +29,7 @@ public class Main {
                 false,
                 false
         );
-        TaskRepository.delete(3);
 
-        for (Task task: TaskRepository.findAll()){
-            System.out.println(task);
-        }
+        TaskService.home();
     }
 }

@@ -31,25 +31,25 @@ public class TaskRepository {
         return task;
     }
 
-    public static void delete(int id) {
+    public static void delete(Task task) {
         String sql = "UPDATE tasks SET deleted = 1 WHERE (id = ?);";
 
         try (Connection conn = ConnectionFactory.getConnection()) {
             PreparedStatement stmt = conn.prepareStatement(sql);
-            stmt.setInt(1, id);
+            stmt.setLong(1, task.getId());
             stmt.executeUpdate();
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
     }
 
-    public static void markAsComplete(int id) {
+    public static void markAsComplete(Task task) {
         String sql = "UPDATE tasks SET completed = 1 WHERE (id = ?);";
 
         try (Connection conn = ConnectionFactory.getConnection();
              PreparedStatement stmt = conn.prepareStatement(sql)
         ) {
-            stmt.setInt(1, id);
+            stmt.setLong(1, task.getId());
             stmt.executeUpdate();
         } catch (SQLException e) {
             throw new RuntimeException(e);
