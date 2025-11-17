@@ -24,8 +24,8 @@ Aplicação em linha de comando que permite criar, listar e gerenciar tarefas. O
 
 Requisitos: Java 17\+, Maven, Docker e uma IDE (IntelliJ recomendada).
 
-\- iniciar um container com o `docker-compose up -d`
-\- Rodar direto pela IDE: abrir o projeto em IntelliJ e executar a classe `Main` (`src/main/java/com/todocli/Main.java`).
+- iniciar um container com o `docker-compose up -d`
+- Rodar direto pela IDE: abrir o projeto em IntelliJ e executar a classe `Main` (`src/main/java/com/todocli/Main.java`).
 
 ## Observações
 
