@@ -14,6 +14,7 @@ public class TaskService {
         switch (homeOption) {
             case LIST -> tasks();
             case CREATE -> create();
+            case DELETED_LIST -> deletedTasks();
         }
     }
 
@@ -33,7 +34,7 @@ public class TaskService {
     private static void tasks() {
         List<Task> tasks = TaskRepository.findAll();
         tasks = tasks.stream().filter(task -> !task.isDeleted()).toList();
-        Task selectedTask = TasksList.show(tasks);
+        Task selectedTask = TasksList.show(tasks, "MINHAS TAREFAS");
 
         while (true) {
             TaskOption taskOption = TaskDetail.show(selectedTask);
@@ -51,6 +52,7 @@ public class TaskService {
                     if (ConfirmBox.taskDelete(selectedTask)) {
                         TaskRepository.delete(selectedTask);
                         Message.success("Tarefa deletada com sucesso.");
+                        tasks(); // Retorna para a lista de tarefas
                     } else {
                         Message.alert("Ação cancelada.");
                     }
@@ -61,5 +63,11 @@ public class TaskService {
                 }
             }
         }
+    }
+
+    private static void deletedTasks() {
+        List<Task> tasks = TaskRepository.findAll();
+        tasks = tasks.stream().filter(Task::isDeleted).toList();
+        Task selectedTask = TasksList.show(tasks, "TAREFAS EXCLUÍDAS");
     }
 }

@@ -12,12 +12,12 @@ public class TasksList {
     private static final DateTimeFormatter DATE_FORMAT = DateTimeFormatter.ofPattern("dd/MM/yyyy");
     private static final DateTimeFormatter TIME_FORMAT = DateTimeFormatter.ofPattern("HH:mm");
 
-    public static Task show(List<Task> tasks) {
+    public static Task show(List<Task> tasks, String tableName) {
         Task selectedTask = null;
         int selectedId;
 
         while (true) {
-            print(tasks);
+            print(tasks, tableName);
             System.out.print("\nID selecionado >> ");
             selectedId = SCANNER.nextInt();
             SCANNER.nextLine();
@@ -35,13 +35,13 @@ public class TasksList {
     }
 
     /* ------------ MÉTODOS PRIVADOS AUXILIARES ------------ */
-    private static void print(List<Task> tasks) {
+    private static void print(List<Task> tasks, String tableName) {
         int quantity = tasks.size();
         int completedQuantity = Math.toIntExact(tasks.stream().filter(Task::isCompleted).count());
 
         CliUtils.clear();
         System.out.println("╔════════════════════════════════════════════════════════════════════════════════════════════════════╗");
-        System.out.printf("║ TAREFAS: (Concluídas %03d/%03d)       Ordenar: data ↑     Filtro: nenhum                             ║\n", completedQuantity, quantity);
+        System.out.printf("║ %s                                                   TAREFAS: (Concluídas %03d/%03d) ║\n", CliUtils.truncateOrPad(tableName, 18), completedQuantity, quantity);
         System.out.println("╠═════╦════════════╦═══════╦════════════════════════════════╦═══════╦════════════════════════════════╣");
         System.out.println("║ ID  ║    DATA    ║ HORA  ║ TÍTULO                         ║  ST   ║ DESCRIÇÃO                      ║");
         System.out.println("╠═════╬════════════╬═══════╬════════════════════════════════╬═══════╬════════════════════════════════╣");
